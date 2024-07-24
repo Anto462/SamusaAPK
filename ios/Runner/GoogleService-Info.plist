@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>901018820475-b3if7609vm6qloh41ob78tsqpo0fkph8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.901018820475-b3if7609vm6qloh41ob78tsqpo0fkph8</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>901018820475-c3enb7s9rbv552burdajfgughndobn0m.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBRNl4M0mmbuu8kGvSd_yzLig4AM63w-Fg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>901018820475</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Samusa.samusaapp</string>
+	<key>PROJECT_ID</key>
+	<string>samusa-app-9x2hrv</string>
+	<key>STORAGE_BUCKET</key>
+	<string>samusa-app-9x2hrv.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:901018820475:ios:773dba3cf3bc579b5be7de</string>
+</dict>
+</plist>

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "901018820475",
+    "project_id": "samusa-app-9x2hrv",
+    "storage_bucket": "samusa-app-9x2hrv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901018820475:android:6552b657392f65c85be7de",
+        "android_client_info": {
+          "package_name": "com.Samusa.samusaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901018820475-c3enb7s9rbv552burdajfgughndobn0m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Samusa.samusaapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "901018820475-jel71cs0eecb77i96vcn6qvs9n6gluo8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-RoSbvQYKAgzlyMeEbYsSH9iexkMahZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901018820475-jel71cs0eecb77i96vcn6qvs9n6gluo8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901018820475-b3if7609vm6qloh41ob78tsqpo0fkph8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Samusa.samusaapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
