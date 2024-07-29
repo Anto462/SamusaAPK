@@ -540,7 +540,6 @@ class _MiperfilWidgetState extends State<MiperfilWidget>
                       }
                       List<UsersRecord> listViewUsersRecordList =
                           snapshot.data!;
-
                       // Return an empty Container when the item does not exist.
                       if (snapshot.data!.isEmpty) {
                         return Container();
@@ -549,6 +548,7 @@ class _MiperfilWidgetState extends State<MiperfilWidget>
                           listViewUsersRecordList.isNotEmpty
                               ? listViewUsersRecordList.first
                               : null;
+
                       return ListView(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,

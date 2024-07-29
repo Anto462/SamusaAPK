@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'agrega_importacion_widget.dart' show AgregaImportacionWidget;
+import '/flutter_flow/form_field_controller.dart';
+import 'agrega_exporta_v_h_widget.dart' show AgregaExportaVHWidget;
 import 'package:flutter/material.dart';
 
-class AgregaImportacionModel extends FlutterFlowModel<AgregaImportacionWidget> {
+class AgregaExportaVHModel extends FlutterFlowModel<AgregaExportaVHWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for txtcliente widget.
@@ -14,15 +15,18 @@ class AgregaImportacionModel extends FlutterFlowModel<AgregaImportacionWidget> {
   TextEditingController? txtnseguimientoTextController;
   String? Function(BuildContext, String?)?
       txtnseguimientoTextControllerValidator;
-  // State field(s) for txtestado widget.
-  FocusNode? txtestadoFocusNode;
-  TextEditingController? txtestadoTextController;
-  String? Function(BuildContext, String?)? txtestadoTextControllerValidator;
-  // State field(s) for txtestadodekra widget.
-  FocusNode? txtestadodekraFocusNode;
-  TextEditingController? txtestadodekraTextController;
+  // State field(s) for EstadoDD widget.
+  String? estadoDDValue;
+  FormFieldController<String>? estadoDDValueController;
+  // State field(s) for txtNaviera widget.
+  FocusNode? txtNavieraFocusNode;
+  TextEditingController? txtNavieraTextController;
+  String? Function(BuildContext, String?)? txtNavieraTextControllerValidator;
+  // State field(s) for txtTransportista widget.
+  FocusNode? txtTransportistaFocusNode;
+  TextEditingController? txtTransportistaTextController;
   String? Function(BuildContext, String?)?
-      txtestadodekraTextControllerValidator;
+      txtTransportistaTextControllerValidator;
   // State field(s) for txtPorigen widget.
   FocusNode? txtPorigenFocusNode;
   TextEditingController? txtPorigenTextController;
@@ -31,15 +35,6 @@ class AgregaImportacionModel extends FlutterFlowModel<AgregaImportacionWidget> {
   FocusNode? txtOdestinoFocusNode;
   TextEditingController? txtOdestinoTextController;
   String? Function(BuildContext, String?)? txtOdestinoTextControllerValidator;
-  // State field(s) for txtnaviera widget.
-  FocusNode? txtnavieraFocusNode;
-  TextEditingController? txtnavieraTextController;
-  String? Function(BuildContext, String?)? txtnavieraTextControllerValidator;
-  // State field(s) for txttransportista widget.
-  FocusNode? txttransportistaFocusNode;
-  TextEditingController? txttransportistaTextController;
-  String? Function(BuildContext, String?)?
-      txttransportistaTextControllerValidator;
   // State field(s) for txtVin widget.
   FocusNode? txtVinFocusNode;
   TextEditingController? txtVinTextController;
@@ -72,23 +67,17 @@ class AgregaImportacionModel extends FlutterFlowModel<AgregaImportacionWidget> {
     txtnseguimientoFocusNode?.dispose();
     txtnseguimientoTextController?.dispose();
 
-    txtestadoFocusNode?.dispose();
-    txtestadoTextController?.dispose();
+    txtNavieraFocusNode?.dispose();
+    txtNavieraTextController?.dispose();
 
-    txtestadodekraFocusNode?.dispose();
-    txtestadodekraTextController?.dispose();
+    txtTransportistaFocusNode?.dispose();
+    txtTransportistaTextController?.dispose();
 
     txtPorigenFocusNode?.dispose();
     txtPorigenTextController?.dispose();
 
     txtOdestinoFocusNode?.dispose();
     txtOdestinoTextController?.dispose();
-
-    txtnavieraFocusNode?.dispose();
-    txtnavieraTextController?.dispose();
-
-    txttransportistaFocusNode?.dispose();
-    txttransportistaTextController?.dispose();
 
     txtVinFocusNode?.dispose();
     txtVinTextController?.dispose();

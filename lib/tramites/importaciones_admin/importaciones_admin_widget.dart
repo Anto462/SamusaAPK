@@ -1,11 +1,15 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/tramites/agrega_importacion/agrega_importacion_widget.dart';
-import '/tramites/info_comp_vehicle/info_comp_vehicle_widget.dart';
+import '/tramites/agrega_importacion_c_t/agrega_importacion_c_t_widget.dart';
+import '/tramites/agrega_importacion_v_h/agrega_importacion_v_h_widget.dart';
+import '/tramites/info_comp_container_imp/info_comp_container_imp_widget.dart';
+import '/tramites/info_comp_vehicle_im_p/info_comp_vehicle_im_p_widget.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'importaciones_admin_model.dart';
 export 'importaciones_admin_model.dart';
 
@@ -148,7 +152,7 @@ class _ImportacionesAdminWidgetState extends State<ImportacionesAdminWidget> {
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -173,14 +177,69 @@ class _ImportacionesAdminWidgetState extends State<ImportacionesAdminWidget> {
                                         height:
                                             MediaQuery.sizeOf(context).height *
                                                 0.7,
-                                        child: const AgregaImportacionWidget(),
+                                        child: const AgregaImportacionVHWidget(),
                                       ),
                                     ),
                                   );
                                 },
                               ).then((value) => safeSetState(() {}));
                             },
-                            text: 'Agregar tramite',
+                            text: 'Agregar Vehículo',
+                            options: FFButtonOptions(
+                              height: 30.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Manrope',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 5.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.7,
+                                        child: const AgregaImportacionCTWidget(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+                            },
+                            text: 'Agregar Contenedor',
                             options: FFButtonOptions(
                               height: 30.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -214,110 +273,250 @@ class _ImportacionesAdminWidgetState extends State<ImportacionesAdminWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ListView(
-                            padding: EdgeInsets.zero,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              Slidable(
-                                endActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
-                                  extentRatio: 0.75,
-                                  children: [
-                                    SlidableAction(
-                                      label: 'Ver mas',
-                                      backgroundColor:
+                          StreamBuilder<List<ImportacionesRecord>>(
+                            stream: queryImportacionesRecord(
+                              queryBuilder: (importacionesRecord) =>
+                                  importacionesRecord.orderBy('FechaInicio'),
+                              limit: 15,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: SpinKitFadingCube(
+                                      color:
                                           FlutterFlowTheme.of(context).primary,
-                                      icon: Icons.add,
-                                      onPressed: (_) async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: SizedBox(
-                                                  height:
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.55,
-                                                  child:
-                                                      const InfoCompVehicleWidget(),
-                                                ),
-                                              ),
-                                            );
+                                      size: 50.0,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<ImportacionesRecord>
+                                  listViewImportacionesRecordList =
+                                  snapshot.data!;
+
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount:
+                                    listViewImportacionesRecordList.length,
+                                itemBuilder: (context, listViewIndex) {
+                                  final listViewImportacionesRecord =
+                                      listViewImportacionesRecordList[
+                                          listViewIndex];
+                                  return Slidable(
+                                    endActionPane: ActionPane(
+                                      motion: const ScrollMotion(),
+                                      extentRatio: 0.75,
+                                      children: [
+                                        SlidableAction(
+                                          label: 'Ver mas',
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          icon: Icons.add,
+                                          onPressed: (_) async {
+                                            if (listViewImportacionesRecord
+                                                    .vin ==
+                                                'No Aplica') {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            InfoCompContainerImpWidget(
+                                                          tramiteDataC:
+                                                              listViewImportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            InfoCompVehicleImPWidget(
+                                                          tramiteData:
+                                                              listViewImportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            }
                                           },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                    ),
-                                    SlidableAction(
-                                      label: 'Editar',
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      icon: Icons.edit,
-                                      onPressed: (_) {
-                                        print(
-                                            'SlidableActionWidget pressed ...');
-                                      },
-                                    ),
-                                    SlidableAction(
-                                      label: 'Eliminar',
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .alternate,
-                                      icon: Icons.delete,
-                                      onPressed: (_) {
-                                        print(
-                                            'SlidableActionWidget pressed ...');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                child: ListTile(
-                                  title: Text(
-                                    '3035',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .override(
-                                          fontFamily: 'Manrope',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
                                         ),
-                                  ),
-                                  subtitle: Text(
-                                    'En espera',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Manrope',
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          letterSpacing: 0.0,
+                                        SlidableAction(
+                                          label: 'Editar',
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .tertiary,
+                                          icon: Icons.edit,
+                                          onPressed: (_) {
+                                            print(
+                                                'SlidableActionWidget pressed ...');
+                                          },
                                         ),
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 20.0,
-                                  ),
-                                  dense: false,
-                                ),
-                              ),
-                            ],
+                                        SlidableAction(
+                                          label: 'Eliminar',
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          icon: Icons.delete,
+                                          onPressed: (_) async {
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: const Text('Alerta'),
+                                                          content: const Text(
+                                                              'Deseas eliminar el tramite?'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: const Text(
+                                                                  'Cancelar'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child: const Text(
+                                                                  'Confirmar'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                            if (confirmDialogResponse) {
+                                              await listViewImportacionesRecord
+                                                  .reference
+                                                  .delete();
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: const Text('Alerta'),
+                                                    content: const Text(
+                                                        'Tramite no eliminado'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: const Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      title: Text(
+                                        listViewImportacionesRecord
+                                            .numeroDeSeguimiento,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Manrope',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                      subtitle: Text(
+                                        listViewImportacionesRecord.estado,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Manrope',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 20.0,
+                                      ),
+                                      dense: false,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),

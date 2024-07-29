@@ -1,21 +1,23 @@
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'agrega_importacion_model.dart';
-export 'agrega_importacion_model.dart';
+import 'agrega_exporta_v_h_model.dart';
+export 'agrega_exporta_v_h_model.dart';
 
-class AgregaImportacionWidget extends StatefulWidget {
-  const AgregaImportacionWidget({super.key});
+class AgregaExportaVHWidget extends StatefulWidget {
+  const AgregaExportaVHWidget({super.key});
 
   @override
-  State<AgregaImportacionWidget> createState() =>
-      _AgregaImportacionWidgetState();
+  State<AgregaExportaVHWidget> createState() => _AgregaExportaVHWidgetState();
 }
 
-class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
-  late AgregaImportacionModel _model;
+class _AgregaExportaVHWidgetState extends State<AgregaExportaVHWidget> {
+  late AgregaExportaVHModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +28,7 @@ class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AgregaImportacionModel());
+    _model = createModel(context, () => AgregaExportaVHModel());
 
     _model.txtclienteTextController ??= TextEditingController();
     _model.txtclienteFocusNode ??= FocusNode();
@@ -34,23 +36,17 @@ class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
     _model.txtnseguimientoTextController ??= TextEditingController();
     _model.txtnseguimientoFocusNode ??= FocusNode();
 
-    _model.txtestadoTextController ??= TextEditingController();
-    _model.txtestadoFocusNode ??= FocusNode();
+    _model.txtNavieraTextController ??= TextEditingController();
+    _model.txtNavieraFocusNode ??= FocusNode();
 
-    _model.txtestadodekraTextController ??= TextEditingController();
-    _model.txtestadodekraFocusNode ??= FocusNode();
+    _model.txtTransportistaTextController ??= TextEditingController();
+    _model.txtTransportistaFocusNode ??= FocusNode();
 
     _model.txtPorigenTextController ??= TextEditingController();
     _model.txtPorigenFocusNode ??= FocusNode();
 
     _model.txtOdestinoTextController ??= TextEditingController();
     _model.txtOdestinoFocusNode ??= FocusNode();
-
-    _model.txtnavieraTextController ??= TextEditingController();
-    _model.txtnavieraFocusNode ??= FocusNode();
-
-    _model.txttransportistaTextController ??= TextEditingController();
-    _model.txttransportistaFocusNode ??= FocusNode();
 
     _model.txtVinTextController ??= TextEditingController();
     _model.txtVinFocusNode ??= FocusNode();
@@ -195,7 +191,7 @@ class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            'Datos de Importación:',
+                            'Datos de Exportación:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -367,412 +363,355 @@ class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtestadoTextController,
-                            focusNode: _model.txtestadoFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Estado',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 4.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 2.0, 0.0),
+                            child: FlutterFlowDropDown<String>(
+                              controller: _model.estadoDDValueController ??=
+                                  FormFieldController<String>(null),
+                              options: List<String>.from([
+                                'En puerto',
+                                'En almacén',
+                                'En documentación',
+                                'En espera de revisión',
+                                'En espera de pago',
+                                'En viaje',
+                                'Completado'
+                              ]),
+                              optionLabels: const [
+                                'En puerto',
+                                'En almacén',
+                                'En documentación',
+                                'En espera de revisión',
+                                'En espera de pago',
+                                'En viaje',
+                                'Completado'
+                              ],
+                              onChanged: (val) =>
+                                  setState(() => _model.estadoDDValue = val),
+                              width: 300.0,
+                              height: 54.0,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Manrope',
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
+                              hintText: 'Estado tramite',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
                               ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 2.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).tertiary,
+                              borderWidth: 2.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isOverButton: true,
+                              isSearchable: false,
+                              isMultiSelect: false,
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.txtestadoTextControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtestadodekraTextController,
-                            focusNode: _model.txtestadodekraFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Estado Dekra',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model
-                                .txtestadodekraTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtPorigenTextController,
-                            focusNode: _model.txtPorigenFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Puerto origen',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 3.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.txtNavieraTextController,
+                              focusNode: _model.txtNavieraFocusNode,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Naviera',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Manrope',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
+                              validator: _model
+                                  .txtNavieraTextControllerValidator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.txtPorigenTextControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtOdestinoTextController,
-                            focusNode: _model.txtOdestinoFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Puerto Destino',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.txtTransportistaTextController,
+                              focusNode: _model.txtTransportistaFocusNode,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Transportista',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Manrope',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
+                              validator: _model
+                                  .txtTransportistaTextControllerValidator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.txtOdestinoTextControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtnavieraTextController,
-                            focusNode: _model.txtnavieraFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Naviera',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.txtPorigenTextController,
+                              focusNode: _model.txtPorigenFocusNode,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Puerto origen',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Manrope',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
+                              validator: _model
+                                  .txtPorigenTextControllerValidator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.txtnavieraTextControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txttransportistaTextController,
-                            focusNode: _model.txttransportistaFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Transportista',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.txtOdestinoTextController,
+                              focusNode: _model.txtOdestinoFocusNode,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Puerto Destino',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Manrope',
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
+                              validator: _model
+                                  .txtOdestinoTextControllerValidator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model
-                                .txttransportistaTextControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -1122,8 +1061,46 @@ class _AgregaImportacionWidgetState extends State<AgregaImportacionWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            await ExportacionesRecord.collection
+                                .doc()
+                                .set(createExportacionesRecordData(
+                                  numeroDeSeguimiento:
+                                      _model.txtnseguimientoTextController.text,
+                                  estado: _model.estadoDDValue,
+                                  fechaInicio: getCurrentTimestamp,
+                                  puertoOrigen:
+                                      _model.txtPorigenTextController.text,
+                                  puertoDestino:
+                                      _model.txtOdestinoTextController.text,
+                                  naviera: _model.txtNavieraTextController.text,
+                                  transportista: _model
+                                      .txtTransportistaTextController.text,
+                                  vin: _model.txtVinTextController.text,
+                                  marca: _model.txtmarcaTextController.text,
+                                  modelo: _model.txtmodeloTextController.text,
+                                  extras: _model.txtextrasTextController.text,
+                                  anio: int.tryParse(
+                                      _model.txtanioTextController.text),
+                                  correoCliente:
+                                      _model.txtclienteTextController.text,
+                                ));
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Alerta'),
+                                  content: const Text('Se ha añadido el tramite'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           text: 'Agregar',
                           options: FFButtonOptions(

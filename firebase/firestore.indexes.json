@@ -1,3 +1,32 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "Importaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Anio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Exportaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }

@@ -1,20 +1,26 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'info_comp_container_model.dart';
-export 'info_comp_container_model.dart';
+import 'info_comp_vehicle_im_p_model.dart';
+export 'info_comp_vehicle_im_p_model.dart';
 
-class InfoCompContainerWidget extends StatefulWidget {
-  const InfoCompContainerWidget({super.key});
+class InfoCompVehicleImPWidget extends StatefulWidget {
+  const InfoCompVehicleImPWidget({
+    super.key,
+    required this.tramiteData,
+  });
+
+  final ImportacionesRecord? tramiteData;
 
   @override
-  State<InfoCompContainerWidget> createState() =>
-      _InfoCompContainerWidgetState();
+  State<InfoCompVehicleImPWidget> createState() =>
+      _InfoCompVehicleImPWidgetState();
 }
 
-class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
-  late InfoCompContainerModel _model;
+class _InfoCompVehicleImPWidgetState extends State<InfoCompVehicleImPWidget> {
+  late InfoCompVehicleImPModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -25,7 +31,7 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => InfoCompContainerModel());
+    _model = createModel(context, () => InfoCompVehicleImPModel());
   }
 
   @override
@@ -188,7 +194,10 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '3035',
+                          valueOrDefault<String>(
+                            widget.tramiteData?.numeroDeSeguimiento,
+                            '0',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Manrope',
@@ -218,7 +227,10 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   2.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'En puerto',
+                                valueOrDefault<String>(
+                                  widget.tramiteData?.estado,
+                                  'Sin data',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -228,6 +240,43 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Estado DEKRA: ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Manrope',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                widget.tramiteData?.estadoDekra,
+                                'Sin data',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Manrope',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ],
                         ),
@@ -247,6 +296,8 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -255,7 +306,7 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Puerto de Origen: ',
+                                    'VIN: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -264,7 +315,10 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Miami',
+                                    valueOrDefault<String>(
+                                      widget.tramiteData?.vin,
+                                      'Sin data',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -284,7 +338,7 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Naviera: ',
+                                    'Modelo: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -293,7 +347,42 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Port to Port',
+                                    valueOrDefault<String>(
+                                      widget.tramiteData?.modelo,
+                                      'Sin data',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 5.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    'Año: ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Text(
+                                    valueOrDefault<String>(
+                                      widget.tramiteData?.anio.toString(),
+                                      '0',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -312,6 +401,8 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -320,7 +411,7 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Puerto Destino: ',
+                                    'Marca: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -329,7 +420,10 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Caldera',
+                                    valueOrDefault<String>(
+                                      widget.tramiteData?.marca,
+                                      'Sin data',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -349,7 +443,7 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Transportista: ',
+                                    'Extras: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -358,7 +452,10 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'FireRoad',
+                                    valueOrDefault<String>(
+                                      widget.tramiteData?.extras,
+                                      'Sin data',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -388,6 +485,8 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                               0.0, 5.0, 0.0, 5.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'Fecha de Inicio: ',
@@ -395,13 +494,15 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Manrope',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
                                       letterSpacing: 0.0,
                                     ),
                               ),
                               Text(
-                                '10/6/2024',
+                                valueOrDefault<String>(
+                                  dateTimeFormat('d/M/y',
+                                      widget.tramiteData?.fechaInicio),
+                                  'Inicio',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -437,7 +538,11 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                   ),
                             ),
                             Text(
-                              '10/7/2024',
+                              valueOrDefault<String>(
+                                dateTimeFormat('d/M/y',
+                                    widget.tramiteData?.fechaEsperada),
+                                'Sin determinar',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -471,7 +576,11 @@ class _InfoCompContainerWidgetState extends State<InfoCompContainerWidget> {
                                   ),
                             ),
                             Text(
-                              'Sin determinar',
+                              valueOrDefault<String>(
+                                dateTimeFormat(
+                                    'd/M/y', widget.tramiteData?.fechaFin),
+                                'Sin determinar',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

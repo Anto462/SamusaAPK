@@ -1,19 +1,27 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'info_comp_vehicle_model.dart';
-export 'info_comp_vehicle_model.dart';
+import 'info_comp_container_exp_model.dart';
+export 'info_comp_container_exp_model.dart';
 
-class InfoCompVehicleWidget extends StatefulWidget {
-  const InfoCompVehicleWidget({super.key});
+class InfoCompContainerExpWidget extends StatefulWidget {
+  const InfoCompContainerExpWidget({
+    super.key,
+    required this.tramiteDataC,
+  });
+
+  final ExportacionesRecord? tramiteDataC;
 
   @override
-  State<InfoCompVehicleWidget> createState() => _InfoCompVehicleWidgetState();
+  State<InfoCompContainerExpWidget> createState() =>
+      _InfoCompContainerExpWidgetState();
 }
 
-class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
-  late InfoCompVehicleModel _model;
+class _InfoCompContainerExpWidgetState
+    extends State<InfoCompContainerExpWidget> {
+  late InfoCompContainerExpModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -24,7 +32,7 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => InfoCompVehicleModel());
+    _model = createModel(context, () => InfoCompContainerExpModel());
   }
 
   @override
@@ -187,7 +195,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '3035',
+                          valueOrDefault<String>(
+                            widget.tramiteDataC?.numeroDeSeguimiento,
+                            '0',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Manrope',
@@ -217,7 +228,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   2.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'En puerto',
+                                valueOrDefault<String>(
+                                  widget.tramiteDataC?.estado,
+                                  'Sin Data',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -227,40 +241,6 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Estado DEKRA: ',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            Text(
-                              'En espera de cita',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                  ),
                             ),
                           ],
                         ),
@@ -280,8 +260,6 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -290,7 +268,7 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'VIN: ',
+                                    'Puerto de Origen: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -299,36 +277,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'JMA12DSDFE343234',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Manrope',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 5.0, 0.0, 5.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Modelo: ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Manrope',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Corolla',
+                                    valueOrDefault<String>(
+                                      widget.tramiteDataC?.puertoOrigen,
+                                      'origen',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -348,7 +300,7 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Año: ',
+                                    'Naviera: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -357,7 +309,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                         ),
                                   ),
                                   Text(
-                                    '2020',
+                                    valueOrDefault<String>(
+                                      widget.tramiteDataC?.naviera,
+                                      'Sin Determinar',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -376,8 +331,6 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -386,7 +339,7 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Marca: ',
+                                    'Puerto Destino: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -395,7 +348,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Toyota',
+                                    valueOrDefault<String>(
+                                      widget.tramiteDataC?.puertoDestino,
+                                      'Destino',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -415,7 +371,7 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Text(
-                                    'Extras: ',
+                                    'Transportista: ',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -424,7 +380,10 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Semifull',
+                                    valueOrDefault<String>(
+                                      widget.tramiteDataC?.transportista,
+                                      'Sin Determinar',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -454,8 +413,6 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                               0.0, 5.0, 0.0, 5.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'Fecha de Inicio: ',
@@ -463,11 +420,17 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Manrope',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       letterSpacing: 0.0,
                                     ),
                               ),
                               Text(
-                                '10/6/2024',
+                                valueOrDefault<String>(
+                                  dateTimeFormat('d/M/y',
+                                      widget.tramiteDataC?.fechaInicio),
+                                  'Inicio',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -503,7 +466,11 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                   ),
                             ),
                             Text(
-                              '10/7/2024',
+                              valueOrDefault<String>(
+                                dateTimeFormat('d/M/y',
+                                    widget.tramiteDataC?.fechaEsperada),
+                                'Sin determinar',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -537,7 +504,11 @@ class _InfoCompVehicleWidgetState extends State<InfoCompVehicleWidget> {
                                   ),
                             ),
                             Text(
-                              'Sin determinar',
+                              valueOrDefault<String>(
+                                dateTimeFormat(
+                                    'd/M/y', widget.tramiteDataC?.fechaFin),
+                                'Sin determinar',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

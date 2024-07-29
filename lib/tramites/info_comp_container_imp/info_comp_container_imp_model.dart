@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'info_comp_vehicle_widget.dart' show InfoCompVehicleWidget;
+import 'info_comp_container_imp_widget.dart' show InfoCompContainerImpWidget;
 import 'package:flutter/material.dart';
 
-class InfoCompVehicleModel extends FlutterFlowModel<InfoCompVehicleWidget> {
+class InfoCompContainerImpModel
+    extends FlutterFlowModel<InfoCompContainerImpWidget> {
   @override
   void initState(BuildContext context) {}
 
