@@ -17,3 +17,4 @@ export '/tramites/importaciones_admin/importaciones_admin_widget.dart'
     show ImportacionesAdminWidget;
 export '/tramites/exportaciones_admin/exportaciones_admin_widget.dart'
     show ExportacionesAdminWidget;
+export '/alertas/alertas_main/alertas_main_widget.dart' show AlertasMainWidget;

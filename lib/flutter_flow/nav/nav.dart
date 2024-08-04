@@ -150,6 +150,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ExportacionesAdmin',
           path: '/exportacionesAdmin',
           builder: (context, params) => const ExportacionesAdminWidget(),
+        ),
+        FFRoute(
+          name: 'AlertasMain',
+          path: '/alertasMain',
+          builder: (context, params) => const AlertasMainWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

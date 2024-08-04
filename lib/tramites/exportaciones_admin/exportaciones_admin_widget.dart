@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tramites/agrega_exporta_c_t/agrega_exporta_c_t_widget.dart';
 import '/tramites/agrega_exporta_v_h/agrega_exporta_v_h_widget.dart';
+import '/tramites/edita_exporta_c_t/edita_exporta_c_t_widget.dart';
+import '/tramites/edita_exporta_v_h/edita_exporta_v_h_widget.dart';
 import '/tramites/info_comp_container_exp/info_comp_container_exp_widget.dart';
 import '/tramites/info_comp_vehicle_exp/info_comp_vehicle_exp_widget.dart';
 import 'dart:math' as math;
@@ -408,9 +410,86 @@ class _ExportacionesAdminWidgetState extends State<ExportacionesAdminWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .tertiary,
                                           icon: Icons.edit,
-                                          onPressed: (_) {
-                                            print(
-                                                'SlidableActionWidget pressed ...');
+                                          onPressed: (_) async {
+                                            if (listViewExportacionesRecord
+                                                    .vin ==
+                                                'No Aplica') {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            EditaExportaCTWidget(
+                                                          dataex:
+                                                              listViewExportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            EditaExportaVHWidget(
+                                                          dataexp:
+                                                              listViewExportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            }
                                           },
                                         ),
                                         SlidableAction(

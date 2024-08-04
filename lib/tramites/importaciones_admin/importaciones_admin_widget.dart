@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tramites/agrega_importacion_c_t/agrega_importacion_c_t_widget.dart';
 import '/tramites/agrega_importacion_v_h/agrega_importacion_v_h_widget.dart';
+import '/tramites/edita_importacion_c_t/edita_importacion_c_t_widget.dart';
+import '/tramites/edita_importacion_v_h/edita_importacion_v_h_widget.dart';
 import '/tramites/info_comp_container_imp/info_comp_container_imp_widget.dart';
 import '/tramites/info_comp_vehicle_im_p/info_comp_vehicle_im_p_widget.dart';
 import 'dart:math' as math;
@@ -407,9 +409,86 @@ class _ImportacionesAdminWidgetState extends State<ImportacionesAdminWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .tertiary,
                                           icon: Icons.edit,
-                                          onPressed: (_) {
-                                            print(
-                                                'SlidableActionWidget pressed ...');
+                                          onPressed: (_) async {
+                                            if (listViewImportacionesRecord
+                                                    .vin ==
+                                                'No Aplica') {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            EditaImportacionCTWidget(
+                                                          dataimp:
+                                                              listViewImportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.55,
+                                                        child:
+                                                            EditaImportacionVHWidget(
+                                                          dataimp:
+                                                              listViewImportacionesRecord,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            }
                                           },
                                         ),
                                         SlidableAction(

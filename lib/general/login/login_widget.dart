@@ -314,58 +314,62 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                     ),
                   ),
-                  Stack(
-                    children: [
-                      Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.5,
-                        decoration: const BoxDecoration(),
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
-                          child: Text(
-                            '              GO!',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Revard',
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  fontSize: 75.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                          ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation2']!),
-                      Transform.rotate(
-                        angle: 35.0 * (math.pi / 180),
-                        origin: const Offset(100.0, -100.0),
-                        child: Container(
+                  Opacity(
+                    opacity: 0.0,
+                    child: Stack(
+                      children: [
+                        Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: MediaQuery.sizeOf(context).height * 0.5,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                          ),
+                          decoration: const BoxDecoration(),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 1.0),
                             child: Text(
-                              'TIME',
+                              '              GO!',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Revard',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    fontSize: 55.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    fontSize: 75.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
                             ),
                           ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['transformOnPageLoadAnimation1']!),
-                    ],
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation2']!),
+                        Transform.rotate(
+                          angle: 35.0 * (math.pi / 180),
+                          origin: const Offset(100.0, -100.0),
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 0.5,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                            ),
+                            child: Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Text(
+                                'TIME',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Revard',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 55.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['transformOnPageLoadAnimation1']!),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -621,6 +625,43 @@ class _LoginWidgetState extends State<LoginWidget>
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('Register');
+                              },
+                              text: 'Crear una cuenta',
+                              options: FFButtonOptions(
+                                width: 230.0,
+                                height: 44.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: const BorderSide(
+                                  color: Color(0x00125EBD),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 24.0),
                             child: Text(
                               'Ingresa con:',
@@ -699,52 +740,55 @@ class _LoginWidgetState extends State<LoginWidget>
                         animationsMap['columnOnPageLoadAnimation']!),
                   ),
                 ),
-                Stack(
-                  children: [
-                    Transform.rotate(
-                      angle: 0.0 * (math.pi / 180),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.55,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primary,
-                        ),
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 55.0, 0.0, 0.0),
-                            child: Text(
-                              'fast!',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Revard',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    fontSize: 120.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: false,
-                                  ),
+                Opacity(
+                  opacity: 0.0,
+                  child: Stack(
+                    children: [
+                      Transform.rotate(
+                        angle: 0.0 * (math.pi / 180),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.55,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primary,
+                          ),
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 55.0, 0.0, 0.0),
+                              child: Text(
+                                'fast!',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Revard',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      fontSize: 120.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['transformOnPageLoadAnimation2']!),
-                    Transform.rotate(
-                      angle: 129.0 * (math.pi / 180),
-                      origin: const Offset(-100.0, 100.0),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.55,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).tertiary,
+                      ).animateOnPageLoad(
+                          animationsMap['transformOnPageLoadAnimation2']!),
+                      Transform.rotate(
+                        angle: 129.0 * (math.pi / 180),
+                        origin: const Offset(-100.0, 100.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.55,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiary,
+                          ),
                         ),
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['transformOnPageLoadAnimation3']!),
-                  ],
+                      ).animateOnPageLoad(
+                          animationsMap['transformOnPageLoadAnimation3']!),
+                    ],
+                  ),
                 ),
               ],
             ),

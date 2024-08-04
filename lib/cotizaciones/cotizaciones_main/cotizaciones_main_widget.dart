@@ -1,14 +1,13 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/cotizaciones/agrega_cotizacion/agrega_cotizacion_widget.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lottie/lottie.dart';
 import 'cotizaciones_main_model.dart';
 export 'cotizaciones_main_model.dart';
@@ -266,56 +265,87 @@ class _CotizacionesMainWidgetState extends State<CotizacionesMainWidget>
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 5.0),
-                                    child: FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.dropDownValueController1 ??=
+                                    child: StreamBuilder<List<CategoriaRecord>>(
+                                      stream: queryCategoriaRecord(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitFadingCube(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<CategoriaRecord>
+                                            dropDownCategoriaRecordList =
+                                            snapshot.data!;
+
+                                        return FlutterFlowDropDown<String>(
+                                          controller: _model
+                                                  .dropDownValueController1 ??=
                                               FormFieldController<String>(null),
-                                      options: const ['Option 1'],
-                                      onChanged: (val) => setState(
-                                          () => _model.dropDownValue1 = val),
-                                      width: 300.0,
-                                      height: 56.0,
-                                      searchHintTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Manrope',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      searchTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Manrope',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Manrope',
-                                            letterSpacing: 0.0,
+                                          options: dropDownCategoriaRecordList
+                                              .map((e) => e.categoria)
+                                              .toList(),
+                                          onChanged: (val) => setState(() =>
+                                              _model.dropDownValue1 = val),
+                                          width: 300.0,
+                                          height: 56.0,
+                                          searchHintTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          searchTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          hintText: 'Categoria...',
+                                          searchHintText:
+                                              'Search for an item...',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
                                           ),
-                                      hintText: 'Categoria...',
-                                      searchHintText: 'Search for an item...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 2.0,
-                                      borderColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderWidth: 2.0,
-                                      borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 4.0, 16.0, 4.0),
-                                      hidesUnderline: true,
-                                      isOverButton: true,
-                                      isSearchable: true,
-                                      isMultiSelect: false,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          elevation: 2.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          borderWidth: 2.0,
+                                          borderRadius: 8.0,
+                                          margin:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 4.0, 16.0, 4.0),
+                                          hidesUnderline: true,
+                                          isOverButton: true,
+                                          isSearchable: true,
+                                          isMultiSelect: false,
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
@@ -360,56 +390,93 @@ class _CotizacionesMainWidgetState extends State<CotizacionesMainWidget>
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 15.0),
-                                    child: FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.dropDownValueController2 ??=
-                                              FormFieldController<String>(null),
-                                      options: const ['Option 1'],
-                                      onChanged: (val) => setState(
-                                          () => _model.dropDownValue2 = val),
-                                      width: 300.0,
-                                      height: 56.0,
-                                      searchHintTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Manrope',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      searchTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Manrope',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Manrope',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintText: 'Producto...',
-                                      searchHintText: 'Search for an item...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                    child: StreamBuilder<List<ProductosRecord>>(
+                                      stream: queryProductosRecord(
+                                        queryBuilder: (productosRecord) =>
+                                            productosRecord.where(
+                                          'categoria',
+                                          isEqualTo: _model.dropDownValue1,
+                                        ),
                                       ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 2.0,
-                                      borderColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderWidth: 2.0,
-                                      borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 4.0, 16.0, 4.0),
-                                      hidesUnderline: true,
-                                      isOverButton: true,
-                                      isSearchable: true,
-                                      isMultiSelect: false,
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitFadingCube(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ProductosRecord>
+                                            dropDownProductosRecordList =
+                                            snapshot.data!;
+
+                                        return FlutterFlowDropDown<String>(
+                                          controller: _model
+                                                  .dropDownValueController2 ??=
+                                              FormFieldController<String>(null),
+                                          options: dropDownProductosRecordList
+                                              .map((e) => e.nombre)
+                                              .toList(),
+                                          onChanged: (val) => setState(() =>
+                                              _model.dropDownValue2 = val),
+                                          width: 300.0,
+                                          height: 56.0,
+                                          searchHintTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          searchTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Manrope',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          hintText: 'Producto...',
+                                          searchHintText:
+                                              'Search for an item...',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          elevation: 2.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          borderWidth: 2.0,
+                                          borderRadius: 8.0,
+                                          margin:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 4.0, 16.0, 4.0),
+                                          hidesUnderline: true,
+                                          isOverButton: true,
+                                          isSearchable: true,
+                                          isMultiSelect: false,
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
@@ -418,101 +485,6 @@ class _CotizacionesMainWidgetState extends State<CotizacionesMainWidget>
                           ),
                         ],
                       ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'Calcular',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                            hoverColor: FlutterFlowTheme.of(context).tertiary,
-                          ),
-                        ),
-                        if (valueOrDefault(currentUserDocument?.role, '') ==
-                            'Admin')
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: AuthUserStreamWidget(
-                              builder: (context) => FFButtonWidget(
-                                onPressed: () async {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    enableDrag: false,
-                                    context: context,
-                                    builder: (context) {
-                                      return GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.7,
-                                            child: const AgregaCotizacionWidget(),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(() {}));
-                                },
-                                text: 'Agregar',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
                     ),
                     Padding(
                       padding:
@@ -575,16 +547,70 @@ class _CotizacionesMainWidgetState extends State<CotizacionesMainWidget>
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          '25',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'WorkSans',
-                                                fontSize: 45.0,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
+                                        StreamBuilder<List<ProductosRecord>>(
+                                          stream: queryProductosRecord(
+                                            queryBuilder: (productosRecord) =>
+                                                productosRecord
+                                                    .where(
+                                                      'nombre',
+                                                      isEqualTo:
+                                                          _model.dropDownValue2,
+                                                    )
+                                                    .where(
+                                                      'categoria',
+                                                      isEqualTo:
+                                                          _model.dropDownValue1,
+                                                    ),
+                                            singleRecord: true,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child: SpinKitFadingCube(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 50.0,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<ProductosRecord>
+                                                textProductosRecordList =
+                                                snapshot.data!;
+                                            // Return an empty Container when the item does not exist.
+                                            if (snapshot.data!.isEmpty) {
+                                              return Container();
+                                            }
+                                            final textProductosRecord =
+                                                textProductosRecordList
+                                                        .isNotEmpty
+                                                    ? textProductosRecordList
+                                                        .first
+                                                    : null;
+
+                                            return Text(
+                                              valueOrDefault<String>(
+                                                textProductosRecord
+                                                    ?.porcentajeImpuesto
+                                                    .toString(),
+                                                '0',
                                               ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'WorkSans',
+                                                        fontSize: 45.0,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                            );
+                                          },
                                         ),
                                         Text(
                                           '%',
