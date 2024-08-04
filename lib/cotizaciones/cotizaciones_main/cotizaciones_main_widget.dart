@@ -214,7 +214,7 @@ class _CotizacionesMainWidgetState extends State<CotizacionesMainWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
-                              'Seleciona la categoria y el producto:',
+                              'Selecciona la categoria y el producto:',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

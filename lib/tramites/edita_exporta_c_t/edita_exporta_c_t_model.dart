@@ -10,11 +10,6 @@ class EditaExportaCTModel extends FlutterFlowModel<EditaExportaCTWidget> {
   FocusNode? txtclienteFocusNode;
   TextEditingController? txtclienteTextController;
   String? Function(BuildContext, String?)? txtclienteTextControllerValidator;
-  // State field(s) for txtnseguimiento widget.
-  FocusNode? txtnseguimientoFocusNode;
-  TextEditingController? txtnseguimientoTextController;
-  String? Function(BuildContext, String?)?
-      txtnseguimientoTextControllerValidator;
   // State field(s) for EstadoDD widget.
   String? estadoDDValue;
   FormFieldController<String>? estadoDDValueController;
@@ -43,9 +38,6 @@ class EditaExportaCTModel extends FlutterFlowModel<EditaExportaCTWidget> {
   void dispose() {
     txtclienteFocusNode?.dispose();
     txtclienteTextController?.dispose();
-
-    txtnseguimientoFocusNode?.dispose();
-    txtnseguimientoTextController?.dispose();
 
     txtPorigenFocusNode?.dispose();
     txtPorigenTextController?.dispose();

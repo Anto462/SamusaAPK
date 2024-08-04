@@ -39,10 +39,6 @@ class _EditaExportaCTWidgetState extends State<EditaExportaCTWidget> {
         TextEditingController(text: widget.dataex?.correoCliente);
     _model.txtclienteFocusNode ??= FocusNode();
 
-    _model.txtnseguimientoTextController ??=
-        TextEditingController(text: widget.dataex?.numeroDeSeguimiento);
-    _model.txtnseguimientoFocusNode ??= FocusNode();
-
     _model.txtPorigenTextController ??=
         TextEditingController(text: widget.dataex?.puertoOrigen);
     _model.txtPorigenFocusNode ??= FocusNode();
@@ -187,7 +183,10 @@ class _EditaExportaCTWidgetState extends State<EditaExportaCTWidget> {
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            'Datos de Exportación:',
+                            valueOrDefault<String>(
+                              widget.dataex?.numeroDeSeguimiento,
+                              '0',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -281,79 +280,6 @@ class _EditaExportaCTWidgetState extends State<EditaExportaCTWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.txtclienteTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtnseguimientoTextController,
-                            focusNode: _model.txtnseguimientoFocusNode,
-                            autofocus: true,
-                            readOnly: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Numero de seguimiento',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model
-                                .txtnseguimientoTextControllerValidator
                                 .asValidator(context),
                           ),
                         ),
@@ -708,13 +634,38 @@ class _EditaExportaCTWidgetState extends State<EditaExportaCTWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            await ExportacionesRecord.collection
-                                .doc()
-                                .set(createExportacionesRecordData(
+                            var confirmDialogResponse = await showDialog<bool>(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('Alerta'),
+                                      content: const Text('Confirmar la update'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, false),
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, true),
+                                          child: const Text('Confirmar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ) ??
+                                false;
+                            if (confirmDialogResponse) {
+                              if (widget.dataex?.estado == 'Completado') {
+                                await widget.dataex!.reference
+                                    .update(createExportacionesRecordData(
                                   numeroDeSeguimiento:
-                                      _model.txtnseguimientoTextController.text,
+                                      widget.dataex?.numeroDeSeguimiento,
                                   estado: _model.estadoDDValue,
-                                  fechaInicio: getCurrentTimestamp,
+                                  fechaInicio: widget.dataex?.fechaInicio,
+                                  fechaEsperada: widget.dataex?.fechaEsperada,
+                                  fechaFin: getCurrentTimestamp,
                                   puertoOrigen:
                                       _model.txtPorigenTextController.text,
                                   puertoDestino:
@@ -722,20 +673,64 @@ class _EditaExportaCTWidgetState extends State<EditaExportaCTWidget> {
                                   naviera: _model.txtnavieraTextController.text,
                                   transportista: _model
                                       .txttransportistaTextController.text,
-                                  vin: 'No Aplica',
-                                  marca: 'No Aplica',
-                                  modelo: 'No Aplica',
-                                  extras: 'No Aplica',
-                                  anio: 0,
+                                  vin: widget.dataex?.vin,
+                                  marca: widget.dataex?.marca,
+                                  modelo: widget.dataex?.modelo,
+                                  extras: widget.dataex?.extras,
+                                  anio: widget.dataex?.anio,
                                   correoCliente:
                                       _model.txtclienteTextController.text,
                                 ));
+                              } else {
+                                await widget.dataex!.reference
+                                    .update(createExportacionesRecordData(
+                                  numeroDeSeguimiento:
+                                      widget.dataex?.numeroDeSeguimiento,
+                                  estado: _model.estadoDDValue,
+                                  fechaInicio: widget.dataex?.fechaInicio,
+                                  fechaEsperada: widget.dataex?.fechaEsperada,
+                                  fechaFin: widget.dataex?.fechaFin,
+                                  puertoOrigen:
+                                      _model.txtPorigenTextController.text,
+                                  puertoDestino:
+                                      _model.txtOdestinoTextController.text,
+                                  naviera: _model.txtnavieraTextController.text,
+                                  transportista: _model
+                                      .txttransportistaTextController.text,
+                                  vin: widget.dataex?.vin,
+                                  marca: widget.dataex?.marca,
+                                  modelo: widget.dataex?.modelo,
+                                  extras: widget.dataex?.extras,
+                                  anio: widget.dataex?.anio,
+                                  correoCliente:
+                                      _model.txtclienteTextController.text,
+                                ));
+                              }
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: const Text('Alerta'),
+                                    content: const Text('No se aplican los cambios'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: const Text('Ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
                                   title: const Text('Alerta'),
-                                  content: const Text('Se ha añadido el tramite'),
+                                  content: const Text('Proceso finalizado'),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
