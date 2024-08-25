@@ -427,7 +427,7 @@ class _InfoCompContainerImpWidgetState
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  dateTimeFormat('d/M/y',
+                                  dateTimeFormat("d/M/y",
                                       widget.tramiteDataC?.fechaInicio),
                                   'Inicio',
                                 ),
@@ -467,7 +467,7 @@ class _InfoCompContainerImpWidgetState
                             ),
                             Text(
                               valueOrDefault<String>(
-                                dateTimeFormat('d/M/y',
+                                dateTimeFormat("d/M/y",
                                     widget.tramiteDataC?.fechaEsperada),
                                 'Sin determinar',
                               ),
@@ -506,7 +506,7 @@ class _InfoCompContainerImpWidgetState
                             Text(
                               valueOrDefault<String>(
                                 dateTimeFormat(
-                                    'd/M/y', widget.tramiteDataC?.fechaFin),
+                                    "d/M/y", widget.tramiteDataC?.fechaFin),
                                 'Sin determinar',
                               ),
                               style: FlutterFlowTheme.of(context)

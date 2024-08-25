@@ -9,6 +9,52 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "FechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Exportaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Importaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Anio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Importaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "NumeroDeSeguimiento",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "Anio",
           "order": "ASCENDING"
         }
@@ -20,6 +66,38 @@
       "fields": [
         {
           "fieldPath": "CorreoCliente",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "NumeroDeSeguimiento",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Importaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "NumeroDeSeguimiento",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Exportaciones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "NumeroDeSeguimiento",
           "order": "ASCENDING"
         },
         {

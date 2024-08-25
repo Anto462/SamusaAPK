@@ -499,7 +499,7 @@ class _InfoCompVehicleImPWidgetState extends State<InfoCompVehicleImPWidget> {
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  dateTimeFormat('d/M/y',
+                                  dateTimeFormat("d/M/y",
                                       widget.tramiteData?.fechaInicio),
                                   'Inicio',
                                 ),
@@ -539,7 +539,7 @@ class _InfoCompVehicleImPWidgetState extends State<InfoCompVehicleImPWidget> {
                             ),
                             Text(
                               valueOrDefault<String>(
-                                dateTimeFormat('d/M/y',
+                                dateTimeFormat("d/M/y",
                                     widget.tramiteData?.fechaEsperada),
                                 'Sin determinar',
                               ),
@@ -578,7 +578,7 @@ class _InfoCompVehicleImPWidgetState extends State<InfoCompVehicleImPWidget> {
                             Text(
                               valueOrDefault<String>(
                                 dateTimeFormat(
-                                    'd/M/y', widget.tramiteData?.fechaFin),
+                                    "d/M/y", widget.tramiteData?.fechaFin),
                                 'Sin determinar',
                               ),
                               style: FlutterFlowTheme.of(context)

@@ -17,10 +17,6 @@ class AgregaCotizacionModel extends FlutterFlowModel<AgregaCotizacionWidget> {
   FocusNode? txtimpuestoFocusNode;
   TextEditingController? txtimpuestoTextController;
   String? Function(BuildContext, String?)? txtimpuestoTextControllerValidator;
-  // State field(s) for txtlink widget.
-  FocusNode? txtlinkFocusNode;
-  TextEditingController? txtlinkTextController;
-  String? Function(BuildContext, String?)? txtlinkTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -32,8 +28,5 @@ class AgregaCotizacionModel extends FlutterFlowModel<AgregaCotizacionWidget> {
 
     txtimpuestoFocusNode?.dispose();
     txtimpuestoTextController?.dispose();
-
-    txtlinkFocusNode?.dispose();
-    txtlinkTextController?.dispose();
   }
 }

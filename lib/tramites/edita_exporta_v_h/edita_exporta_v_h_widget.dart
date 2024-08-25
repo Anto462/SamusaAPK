@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'edita_exporta_v_h_model.dart';
 export 'edita_exporta_v_h_model.dart';
 
@@ -1101,6 +1102,19 @@ class _EditaExportaVHWidgetState extends State<EditaExportaVHWidget> {
                               );
                             }
 
+                            await launchUrl(Uri(
+                                scheme: 'mailto',
+                                path: widget.dataexp!.correoCliente,
+                                query: {
+                                  'subject':
+                                      'Actualización de tramite: ${widget.dataexp?.numeroDeSeguimiento}',
+                                  'body':
+                                      'Estimado cliente, Comentarle que se cuenta con una actualización de su tramite #${widget.dataexp?.numeroDeSeguimiento}El estado del mismo ha cambiado a ${widget.dataexp?.estado} puedes obtener mas detalles desde nuestra aplicación.  ',
+                                }
+                                    .entries
+                                    .map((MapEntry<String, String> e) =>
+                                        '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                    .join('&')));
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {

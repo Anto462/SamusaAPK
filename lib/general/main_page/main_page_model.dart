@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class MainPageModel extends FlutterFlowModel<MainPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for LottieAnimation widget.
   late bool lottieAnimationStatus;
 
@@ -15,7 +14,5 @@ class MainPageModel extends FlutterFlowModel<MainPageWidget> {
   }
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

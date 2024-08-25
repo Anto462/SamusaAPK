@@ -10,6 +10,7 @@ import 'schema/importaciones_record.dart';
 import 'schema/exportaciones_record.dart';
 import 'schema/productos_record.dart';
 import 'schema/categoria_record.dart';
+import 'schema/alertas_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -23,6 +24,7 @@ export 'schema/importaciones_record.dart';
 export 'schema/exportaciones_record.dart';
 export 'schema/productos_record.dart';
 export 'schema/categoria_record.dart';
+export 'schema/alertas_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -204,6 +206,43 @@ Future<List<CategoriaRecord>> queryCategoriaRecordOnce({
     queryCollectionOnce(
       CategoriaRecord.collection,
       CategoriaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AlertasRecords (as a Stream and as a Future).
+Future<int> queryAlertasRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AlertasRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AlertasRecord>> queryAlertasRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlertasRecord.collection,
+      AlertasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlertasRecord>> queryAlertasRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlertasRecord.collection,
+      AlertasRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

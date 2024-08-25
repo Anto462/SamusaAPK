@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'agrega_cotizacion_model.dart';
 export 'agrega_cotizacion_model.dart';
 
@@ -34,9 +36,6 @@ class _AgregaCotizacionWidgetState extends State<AgregaCotizacionWidget> {
 
     _model.txtimpuestoTextController ??= TextEditingController();
     _model.txtimpuestoFocusNode ??= FocusNode();
-
-    _model.txtlinkTextController ??= TextEditingController();
-    _model.txtlinkFocusNode ??= FocusNode();
   }
 
   @override
@@ -273,42 +272,69 @@ class _AgregaCotizacionWidgetState extends State<AgregaCotizacionWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        FlutterFlowDropDown<String>(
-                          controller: _model.ddtipoproductoValueController ??=
-                              FormFieldController<String>(null),
-                          options: const [
-                            'Hogar',
-                            'Tecnología',
-                            'Ropa',
-                            'Alimentos',
-                            'Repuestos',
-                            'Médico'
-                          ],
-                          onChanged: (val) =>
-                              setState(() => _model.ddtipoproductoValue = val),
-                          width: MediaQuery.sizeOf(context).width * 0.8,
-                          height: 56.0,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                        StreamBuilder<List<CategoriaRecord>>(
+                          stream: queryCategoriaRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: SpinKitFadingCube(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 50.0,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<CategoriaRecord>
+                                ddtipoproductoCategoriaRecordList =
+                                snapshot.data!;
+
+                            return FlutterFlowDropDown<String>(
+                              controller:
+                                  _model.ddtipoproductoValueController ??=
+                                      FormFieldController<String>(
+                                _model.ddtipoproductoValue ??= '',
+                              ),
+                              options: List<String>.from(
+                                  ddtipoproductoCategoriaRecordList
+                                      .map((e) => e.categoria)
+                                      .toList()),
+                              optionLabels: ddtipoproductoCategoriaRecordList
+                                  .map((e) => e.categoria)
+                                  .toList(),
+                              onChanged: (val) => setState(
+                                  () => _model.ddtipoproductoValue = val),
+                              width: MediaQuery.sizeOf(context).width * 0.8,
+                              height: 56.0,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Manrope',
                                     letterSpacing: 0.0,
                                   ),
-                          hintText: 'Elige un tipo de producto',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          elevation: 2.0,
-                          borderColor: FlutterFlowTheme.of(context).tertiary,
-                          borderWidth: 2.0,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: false,
-                          isMultiSelect: false,
+                              hintText: 'Elige un tipo de producto',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                              elevation: 2.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).tertiary,
+                              borderWidth: 2.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isOverButton: true,
+                              isSearchable: false,
+                              isMultiSelect: false,
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -381,71 +407,6 @@ class _AgregaCotizacionWidgetState extends State<AgregaCotizacionWidget> {
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.txtlinkTextController,
-                            focusNode: _model.txtlinkFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Link de referencia',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.txtlinkTextControllerValidator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   Padding(
@@ -457,8 +418,80 @@ class _AgregaCotizacionWidgetState extends State<AgregaCotizacionWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            var confirmDialogResponse = await showDialog<bool>(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('Alerta'),
+                                      content: const Text(
+                                          '¿Deseas agregar la informacion?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, false),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, true),
+                                          child: const Text('Confirm'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ) ??
+                                false;
+                            if (confirmDialogResponse) {
+                              if ((_model.txtproductoTextController.text !=
+                                          '') &&
+                                  (_model.txtimpuestoTextController.text !=
+                                          '')) {
+                                await ProductosRecord.collection
+                                    .doc()
+                                    .set(createProductosRecordData(
+                                      nombre:
+                                          _model.txtproductoTextController.text,
+                                      categoria: _model.ddtipoproductoValue,
+                                      porcentajeImpuesto: double.tryParse(_model
+                                          .txtimpuestoTextController.text),
+                                    ));
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('Alerta'),
+                                      content:
+                                          const Text('No se aceptan valores vacios'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            }
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Alerta'),
+                                  content: const Text('Proceso finalizado'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           text: 'Agregar',
                           options: FFButtonOptions(

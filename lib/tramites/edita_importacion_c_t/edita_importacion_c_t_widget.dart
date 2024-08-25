@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'edita_importacion_c_t_model.dart';
 export 'edita_importacion_c_t_model.dart';
 
@@ -729,6 +730,19 @@ class _EditaImportacionCTWidgetState extends State<EditaImportacionCTWidget> {
                               );
                             }
 
+                            await launchUrl(Uri(
+                                scheme: 'mailto',
+                                path: widget.dataimp!.correoCliente,
+                                query: {
+                                  'subject':
+                                      'Actualización de tramite: ${widget.dataimp?.numeroDeSeguimiento}',
+                                  'body':
+                                      'Estimado cliente, Comentarle que se cuenta con una actualización de su tramite #${widget.dataimp?.numeroDeSeguimiento}El estado del mismo ha cambiado a ${widget.dataimp?.estado} puedes obtener mas detalles desde nuestra aplicación.  ',
+                                }
+                                    .entries
+                                    .map((MapEntry<String, String> e) =>
+                                        '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                    .join('&')));
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {

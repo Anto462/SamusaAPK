@@ -189,9 +189,7 @@ class _IntroWidgetState extends State<IntroWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -374,6 +372,7 @@ class _IntroWidgetState extends State<IntroWidget>
                           icon: FaIcon(
                             FontAwesomeIcons.pen,
                             color: FlutterFlowTheme.of(context).primary,
+                            size: 15.0,
                           ),
                           options: FFButtonOptions(
                             width: 230.0,
